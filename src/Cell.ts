@@ -5,28 +5,28 @@ export enum CellContent {
 }
 
 export class Cell {
-  private row
-  private col
-  private cellContent: CellContent = CellContent.EMPTY
+  private x
+  private y
+  private content = CellContent.EMPTY
 
-  constructor (row: number, col: number) {
-    this.row = row
-    this.col = col
+  constructor (x: number, y: number) {
+    this.x = x
+    this.y = y
   }
 
-  get getRow () {
-    return this.row
+  get getX () {
+    return this.x
   }
 
-  get getCol () {
-    return this.col
+  get getY () {
+    return this.y
   }
 
-  get getCellContent () {
-    return this.cellContent
+  get getContent () {
+    return this.content
   }
 
-  set setCellContent (cellContent: CellContent) {
-    this.cellContent = cellContent
+  set setContent (content: CellContent) {
+    this.content = content
   }
 }

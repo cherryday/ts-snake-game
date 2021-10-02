@@ -11,9 +11,9 @@ export class Food {
     return this.cell
   }
 
-  setCell (cell: Cell) {
-    this.cell.setCellContent = CellContent.EMPTY
-    cell.setCellContent = CellContent.FOOD
+  set setCell (cell: Cell) {
+    this.cell.setContent = CellContent.EMPTY
+    cell.setContent = CellContent.FOOD
     this.cell = cell
   }
 }
