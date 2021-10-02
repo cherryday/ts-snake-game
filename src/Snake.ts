@@ -23,6 +23,17 @@ export class Snake {
     return this.direction
   }
 
+  checkIntersection (): boolean {
+    for (let i = 0; i < this.cells.length - 1; i++) {
+      for (let k = i + 1; k < this.cells.length; k++) {
+        if (this.cells[i].getX === this.cells[k].getX && this.cells[i].getY === this.cells[k].getY) {
+          return true
+        }
+      }
+    }
+    return false
+  }
+
   getNextCell (): Cell {
     const lastCell = this.cells[this.cells.length - 1]
     let x = lastCell.getX

@@ -30,10 +30,24 @@ export class Board {
     }
   }
 
+  getCellNextLineOrDefault (cell: Cell): Cell {
+    let x = cell.getX
+    let y = cell.getY
+
+    if (y > this.rowCount - 1) y = 0
+    if (y < 0) y = this.rowCount- 1
+    if (x > this.colCount - 1) x = 0
+    if (x < 0) x = this.colCount - 1
+
+    return this.cells[x][y]
+  }
+
+  getAllCells (): Cell[] {
+    return this.cells.reduce((acc, row) => [...acc, ...row], [])
+  }
+
   getFreeCells (): Cell[] {
-    return this.cells
-      .reduce((acc, row) => [...acc, ...row], [])
-      .filter(cell => cell.getContent === CellContent.EMPTY)
+    return this.getAllCells().filter(cell => cell.getContent === CellContent.EMPTY)
   }
 
   getRandomFreeCell (): Cell {
