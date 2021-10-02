@@ -1,7 +1,7 @@
 import { Food } from './Food'
 import { Board } from './Board'
 import { Cell } from './Cell'
-import { Snake } from './Snake'
+import { Snake, SnakeDirection } from './Snake'
 import { GameLoop } from './GameLoop'
 
 export class Game {
@@ -28,7 +28,7 @@ export class Game {
     const cell = this.board.getCellNextLineOrDefault(nextCell)
     this.snake.move(cell)
   }
-
+  
   private checkIsLose (): boolean {
     return this.snake.checkIntersection()
   }
@@ -43,6 +43,10 @@ export class Game {
     if (this.checkSnakeEat()) {
       this.snakeEat()
     }
+  }
+
+  changeSnakeDirection (direction: SnakeDirection) {
+    this.snake.changeDirection(direction)
   }
 
   start () {
