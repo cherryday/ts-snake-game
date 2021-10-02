@@ -1,4 +1,5 @@
 import { Cell, CellContent } from './Cell'
+import { getRandomInteger } from './utils'
 
 export class Board {
   private rowCount = 14
@@ -33,5 +34,11 @@ export class Board {
     return this.cells
       .reduce((acc, row) => [...acc, ...row], [])
       .filter(cell => cell.getContent === CellContent.EMPTY)
+  }
+
+  getRandomFreeCell (): Cell {
+    const freeCells = this.getFreeCells()
+    const index = getRandomInteger(0, freeCells.length - 1)
+    return freeCells[index]
   }
 }
