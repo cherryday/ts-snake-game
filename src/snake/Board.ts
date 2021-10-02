@@ -1,5 +1,5 @@
 import { Cell, CellContent } from './Cell'
-import { getRandomInteger } from './utils'
+import { getRandomInteger } from '../utils'
 
 export class Board {
   private rowCount = 14
