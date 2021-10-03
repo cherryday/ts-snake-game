@@ -26,7 +26,6 @@ export class GameController {
         this.game.changeSnakeDirection(SnakeDirection.Top)
         break
       case 'ArrowRight':
-        console.log(this.game)
         this.game.changeSnakeDirection(SnakeDirection.Right)
         break
       case 'ArrowDown':
