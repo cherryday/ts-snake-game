@@ -2,14 +2,23 @@ import { Food } from './Food'
 import { Board } from './Board'
 import { Cell } from './Cell'
 import { Snake, SnakeDirection } from './Snake'
+import { View } from './View'
 import { GameLoop } from './GameLoop'
 
 export class Game {
   private board = new Board()
-  private snake = new Snake([])
-  private food = new Food(new Cell(0, 0))
-  // Context ?
-  private gameLoop = new GameLoop(500, this.loopCallback)
+  private snake = new Snake(this.getInitSnakeCells())
+  private food = new Food(this.board.getRandomFreeCell())
+  private view = new View(this.board, this.snake, this.food)
+  private gameLoop = new GameLoop(500, this.loopCallback.bind(this))
+
+  private getInitSnakeCells () {
+    return [
+      this.board.getCells[0][0],
+      this.board.getCells[1][0],
+      this.board.getCells[2][0],
+    ]
+  }
 
   private checkSnakeEat (): boolean {
     const foodCell = this.food.getCell
@@ -40,9 +49,11 @@ export class Game {
   private loopCallback () {
     this.moveSnake()
 
-    if (this.checkSnakeEat()) {
-      this.snakeEat()
-    }
+    // if (this.checkSnakeEat()) {
+    //   this.snakeEat()
+    // }
+
+    this.view.render()
   }
 
   changeSnakeDirection (direction: SnakeDirection) {
@@ -50,6 +61,7 @@ export class Game {
   }
 
   start () {
+    // this.view.render()
     this.gameLoop.start()
   }
 }

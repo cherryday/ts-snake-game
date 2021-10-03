@@ -4,6 +4,7 @@ export class Food {
   private cell
 
   constructor (cell: Cell) {
+    cell.setContent = CellContent.FOOD
     this.cell = cell
   }
 

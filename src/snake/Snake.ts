@@ -12,6 +12,7 @@ export class Snake {
   private direction = SnakeDirection.Bottom
 
   constructor (cells: Cell[]) {
+    cells.forEach(cell => cell.setContent = CellContent.SNAKE)
     this.cells = cells
   }
 
@@ -42,7 +43,7 @@ export class Snake {
     if (this.direction === SnakeDirection.Top) y--
     if (this.direction === SnakeDirection.Right) x++
     if (this.direction === SnakeDirection.Bottom) y++
-    if (this.direction === SnakeDirection.Top) x--
+    if (this.direction === SnakeDirection.Left) x--
 
     return new Cell(x, y)
   }

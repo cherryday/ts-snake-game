@@ -5,14 +5,12 @@ export enum CellContent {
 }
 
 export class Cell {
-  private x
-  private y
   private content = CellContent.EMPTY
 
-  constructor (x: number, y: number) {
-    this.x = x
-    this.y = y
-  }
+  constructor (
+    private x: number,
+    private y: number
+  ) {}
 
   get getX () {
     return this.x

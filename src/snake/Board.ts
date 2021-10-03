@@ -23,11 +23,9 @@ export class Board {
   }
 
   private init () {
-    for (let r = 0; r < this.rowCount; r++) {
-      for (let c = 0; c < this.colCount; c++) {
-        this.cells[r][c] = new Cell(r, c)
-      }
-    }
+    this.cells = [...Array(this.rowCount)].map((_, y) => {
+      return [...Array(this.colCount)].map((__, x) => new Cell(x, y))
+    })
   }
 
   getCellNextLineOrDefault (cell: Cell): Cell {
@@ -39,7 +37,7 @@ export class Board {
     if (x > this.colCount - 1) x = 0
     if (x < 0) x = this.colCount - 1
 
-    return this.cells[x][y]
+    return this.cells[y][x]
   }
 
   getAllCells (): Cell[] {

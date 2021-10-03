@@ -12,14 +12,14 @@ export class GameLoop {
   }
 
   private RAFHandler (timestamp: number) {
-    this.RAFId = window.requestAnimationFrame(this.RAFHandler)
+    this.RAFId = window.requestAnimationFrame(this.RAFHandler.bind(this))
     if ((timestamp - this.lastTime) < this.delay) return
     this.lastTime = timestamp
     this.callback()
   }
 
   start () {
-    this.RAFId = window.requestAnimationFrame(this.RAFHandler)
+    this.RAFId = window.requestAnimationFrame(this.RAFHandler.bind(this))
   }
 
   stop () {
