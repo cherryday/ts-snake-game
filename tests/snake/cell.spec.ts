@@ -1,4 +1,4 @@
-import { Cell, CellContent } from '../../src/snake/Cell'
+import { Cell, CellContent } from '../../src/core/Cell'
 
 describe('Cell', () => {
   it('content value should be empty', () => {

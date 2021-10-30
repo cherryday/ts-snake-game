@@ -21,7 +21,10 @@ export class GameController {
   }
 
   private keydownHandler (event: KeyboardEvent) {
-    switch (event.key) {
+    switch (event.code) {
+      case 'Space':
+        this.game.pause()
+        break
       case 'ArrowUp':
         this.game.changeSnakeDirection(SnakeDirection.Top)
         break

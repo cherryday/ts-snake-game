@@ -6,25 +6,11 @@
 
 body {
   font-family: 'Roboto';
-  background-color: #9BBA59;
-  color: rgba(0, 0, 0, 0.75);
-}
-
-button {
-  cursor: pointer;
-  padding: 0;
-  border: none;
-  background: transparent;
-  font: inherit;
-  color: inherit;
+  background-color: #353336;
 }
 
 canvas {
   display: block;
-}
-
-.main {
-  position: relative;
 }
 
 .main {
@@ -35,52 +21,29 @@ canvas {
   justify-content: center;
 }
 
-.container {
-  position: relative;
-}
-
-.overlay {
-  position: absolute;
-  top: 0;
-  left: 0;
-  height: 100%;
-  width: 100%;
+.points {
+  background-color: #161618;
+  border-radius: 5px;
+  width: 160px;
+  height: 50px;
   display: flex;
-  align-items: center;
   justify-content: center;
-}
-
-.menu {
-  text-align: center;
-}
-
-.menu-title {
-  font-size: 62px;
-  margin-bottom: 8px;
-}
-
-.menu-subtitle {
-  font-size: 32px;
-  margin-bottom: 28px;
-}
-
-.menu-levels {
-  display: flex;
   align-items: center;
-  justify-content: center;
+  margin: 0 auto;
+  margin-bottom: 22px;
 }
 
-.menu-levels__button {
-  font-size: 20px;
-  padding: 12px 28px;
-  text-transform: uppercase;
+.points__title {
+  font-size: 24px;
+  line-height: 28px;
+  font-weight: bold;
+  color: #FA0556;
 }
 
-.menu-levels__button:hover {
-  color: #9BBA59;
-  background-color: rgba(0, 0, 0, 0.75);
-}
-
-.notify-title {
-  font-size: 36px;
+.board {
+  background: #161618;
+  border-radius: 5px;
+  padding: 10px;
+  /* box-shadow: 0px 0px 10px 10px rgba(0, 0, 0, 0.2); */
+  /* filter: drop-shadow(0px 0px 30px #000000); */
 }

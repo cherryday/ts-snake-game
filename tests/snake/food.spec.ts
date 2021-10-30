@@ -1,5 +1,5 @@
-import { Food } from '../../src/snake/Food'
-import { Cell, CellContent } from '../../src/snake/Cell'
+import { Food } from '../../src/core/Food'
+import { Cell, CellContent } from '../../src/core/Cell'
 
 describe('Food', () => {
   it('should set cell content when init', () => {
@@ -18,5 +18,6 @@ describe('Food', () => {
 
     expect(cell.getContent).toBe(CellContent.EMPTY)
     expect(nextCell.getContent).toBe(CellContent.FOOD)
+    expect(food.getCell.getContent).toBe(CellContent.FOOD)
   })
 })

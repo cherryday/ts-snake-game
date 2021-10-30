@@ -10,6 +10,8 @@ export enum SnakeDirection {
 export class Snake {
   private cells: Cell[]
   private direction = SnakeDirection.Bottom
+  private eatingCell: Cell | null = null
+  private isChangingDirection = false
 
   constructor (cells: Cell[]) {
     cells.forEach(cell => cell.setContent = CellContent.SNAKE)
@@ -18,10 +20,6 @@ export class Snake {
 
   get getCells () {
     return this.cells
-  }
-
-  get getDirection () {
-    return this.direction
   }
 
   checkIntersection (): boolean {
@@ -49,23 +47,30 @@ export class Snake {
   }
 
   changeDirection (direction: SnakeDirection) {
+    if (this.isChangingDirection) return
     if (this.direction === SnakeDirection.Top && direction === SnakeDirection.Bottom) return
     if (this.direction === SnakeDirection.Bottom && direction === SnakeDirection.Top) return
     if (this.direction === SnakeDirection.Right && direction === SnakeDirection.Left) return
     if (this.direction === SnakeDirection.Left && direction === SnakeDirection.Right) return
 
     this.direction = direction
+    this.isChangingDirection = true
   }
 
   move (cell: Cell) {
     const firstCell = this.cells.shift()!
     firstCell.setContent = CellContent.EMPTY
     cell.setContent = CellContent.SNAKE
+    this.eatingCell = firstCell
     this.cells.push(cell)
+    this.isChangingDirection = false
   }
 
-  eat (cell: Cell) {
-    cell.setContent = CellContent.SNAKE
-    this.cells.unshift(cell)
+  eat () {
+    if (this.eatingCell) {
+      this.eatingCell.setContent = CellContent.SNAKE
+      this.cells.unshift(this.eatingCell)
+      this.eatingCell = null
+    }
   }
 }
