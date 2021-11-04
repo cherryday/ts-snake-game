@@ -1,9 +1,11 @@
 import { Board } from './Board'
+import { ViewPoints } from './ViewPoints'
 
 export class View {
   private canvas = <HTMLCanvasElement> document.getElementById('canvas')!
   private ctx = this.canvas.getContext('2d')!
   private cellSize = 16
+  private viewPoints = new ViewPoints()
 
   constructor (private board: Board) {
     this.init()
@@ -12,6 +14,7 @@ export class View {
   private init () {
     this.canvas.width = this.board.getColCount * this.cellSize
     this.canvas.height = this.board.getRowCount * this.cellSize
+    this.viewPoints.init()
   }
 
   private getCellPosition (value: number): number {

@@ -1,12 +1,19 @@
+import { Store } from './Store'
 import { Board } from './Board'
 import { SnakeDirection } from './Snake'
 import { View } from './View'
 import { GameLoop } from './GameLoop'
 
+export enum GameStatuses {
+  DEFAULT,
+  PAUSED
+}
+
 export class Game {
+  private store = Store.getInstance()
   private board = new Board()
   private view = new View(this.board)
-  private gameLoop = new GameLoop(150, this.loopCallback.bind(this))
+  private gameLoop = new GameLoop(80, this.loopCallback.bind(this))
 
   private checkIsLose (): boolean {
     return this.board.checkSnakeIntersection()
@@ -19,23 +26,38 @@ export class Game {
   private loopCallback () {
     this.board.moveSnake()
 
-    if (this.checkIsLose()) {
-      this.gameLoop.stop()
-    }
-
-    if (this.checkIsWin()) {
-      this.gameLoop.stop()
+    if (this.checkIsLose() || this.checkIsWin()) {
+      return this.restart()
     }
 
     this.view.render()
   }
 
-  changeSnakeDirection (direction: SnakeDirection) {
-    this.board.changeSnakeDirection(direction)
+  private pause () {
+    this.gameLoop.stop()
   }
 
-  pause () {
+  private restart () {
+    this.store.points = 0
+    this.board.clear()
     this.gameLoop.stop()
+    this.start()
+  }
+
+  toggleStatus () {
+    if (this.store.status === GameStatuses.DEFAULT) {
+      this.store.status = GameStatuses.PAUSED
+      this.pause()
+    } else {
+      this.store.status = GameStatuses.DEFAULT
+      this.start()
+    }
+  }
+
+  changeSnakeDirection (direction: SnakeDirection) {
+    if (this.store.status === GameStatuses.DEFAULT) {
+      this.board.changeSnakeDirection(direction)
+    }
   }
 
   start () {

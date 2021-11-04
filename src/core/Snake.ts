@@ -1,3 +1,4 @@
+import { Store } from './Store'
 import { Cell, CellContent } from './Cell'
 
 export enum SnakeDirection {
@@ -12,6 +13,7 @@ export class Snake {
   private direction = SnakeDirection.Bottom
   private eatingCell: Cell | null = null
   private isChangingDirection = false
+  private store = Store.getInstance()
 
   constructor (cells: Cell[]) {
     cells.forEach(cell => cell.setContent = CellContent.SNAKE)
@@ -71,6 +73,7 @@ export class Snake {
       this.eatingCell.setContent = CellContent.SNAKE
       this.cells.unshift(this.eatingCell)
       this.eatingCell = null
+      this.store.points += 1
     }
   }
 }

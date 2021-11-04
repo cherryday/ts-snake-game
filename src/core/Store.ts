@@ -1,20 +1,16 @@
-enum GameLevels {
-  EASY,
-  MIDDLE,
-  HARD
-}
+import { GameStatuses } from './Game'
 
 interface StoreInterface {
   points: number
-  level: GameLevels
+  status: GameStatuses
 }
 
 type StoreCallback = (store: Store) => void
 type StoreKeys = keyof StoreInterface
 
-class Store implements StoreInterface {
+export class Store implements StoreInterface {
   points = 0
-  level = GameLevels.EASY
+  status = GameStatuses.DEFAULT
   private static instance: Store
   private listeners = new Map<StoreCallback, StoreKeys>()
 

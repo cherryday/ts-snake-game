@@ -69,6 +69,12 @@ export class Board {
     return this.cells[y][x]
   }
 
+  clear () {
+    this.cells = this.getInitCells()
+    this.snake = new Snake(this.getInitSnakeCells())
+    this.food = new Food(this.getRandomFreeCell())
+  }
+
   getAllCells (): Cell[] {
     return this.cells.reduce((acc, row) => [...acc, ...row], [])
   }

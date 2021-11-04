@@ -3,27 +3,20 @@ import { SnakeDirection } from './Snake'
 
 export class GameController {
   private game = new Game()
+  private handler = this.keydownHandler.bind(this)
 
   constructor () {
     this.init()
   }
 
   private init () {
-    document.addEventListener('keydown', event => this.keydownHandler(event))
-  }
-
-  destroy () {
-    document.removeEventListener('keydown', this.keydownHandler)
-  }
-
-  start () {
-    this.game.start()
+    document.addEventListener('keydown', this.handler)
   }
 
   private keydownHandler (event: KeyboardEvent) {
     switch (event.code) {
       case 'Space':
-        this.game.pause()
+        this.game.toggleStatus()
         break
       case 'ArrowUp':
         this.game.changeSnakeDirection(SnakeDirection.Top)
@@ -38,5 +31,13 @@ export class GameController {
         this.game.changeSnakeDirection(SnakeDirection.Left)
         break
     }
+  }
+
+  destroy () {
+    document.removeEventListener('keydown', this.handler)
+  }
+
+  start () {
+    this.game.start()
   }
 }
